@@ -1,0 +1,48 @@
+import { AccordionElement, AccordionCallbacks } from './interfaces';
+import './style.scss';
+export declare class Accordions {
+    instanceId: string | undefined;
+    openClass: string;
+    accordionSelector: string;
+    itemSelector: string;
+    summarySelector: string;
+    detailsSelector: string;
+    isSingle: boolean;
+    breakpoint: MediaQueryList;
+    parentElement: HTMLElement | Document;
+    elements: AccordionElement[];
+    itemElements: AccordionElement[];
+    isDestroyed: boolean;
+    destroyedBy: string | undefined;
+    devMode: boolean;
+    on: AccordionCallbacks;
+    constructor(customParameters?: {});
+    updateInstanceId: () => void;
+    static generateInstanceId: () => string;
+    static isInstanceIdUnique: (instanceId: string) => boolean;
+    generateAccordionId: (accordionId: string | number) => string;
+    generateItemId: (itemId: string | number) => string;
+    generateSummaryId: (itemId: string | number) => string;
+    generateDetailsId: (itemId: string | number) => string;
+    getItemById: (itemId: string) => AccordionElement | undefined;
+    getAccordionById: (accordionId: string) => AccordionElement | undefined;
+    initAccordions: () => void;
+    initAccordion: (accordionElement: AccordionElement, accordionId: number) => void;
+    initItem: ({ itemElement, itemId, accordionId, parentItemId, }: {
+        itemElement: AccordionElement;
+        itemId: string;
+        accordionId: number;
+        parentItemId?: string | undefined;
+    }) => void;
+    destroyAccordion: (accordion: AccordionElement | string) => void;
+    destroyItem: (item: AccordionElement | string) => void;
+    onSummaryClick: (event: MouseEvent) => void;
+    onBreakpointChange: () => void;
+    init: () => void;
+    destroy: (destroyedBy?: string) => void;
+    open: (item: AccordionElement | string) => void;
+    close: (item: AccordionElement | string) => void;
+    toggle: (item: AccordionElement | string) => void;
+    closeAccordion: (accordion: AccordionElement | string) => void;
+    closeAll: () => void;
+}

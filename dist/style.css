@@ -1,0 +1,1 @@
+[data-accordion-role=item]{display:grid;grid-template-rows:max-content 0fr;transition:grid .5s ease}[data-accordion-role=item] [data-accordion-role=summary]{cursor:pointer}[data-accordion-role=item].js--open{grid-template-rows:max-content 1fr}[data-accordion-role=item] [data-accordion-role=details]{overflow:hidden}
