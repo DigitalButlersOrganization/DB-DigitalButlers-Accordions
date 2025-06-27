@@ -28,7 +28,7 @@ export declare class Accordions {
     getAccordionById: (accordionId: string) => AccordionElement | undefined;
     initAccordions: () => void;
     initAccordion: (accordionElement: AccordionElement, accordionId: number) => void;
-    initItem: ({ itemElement, itemId, accordionId, parentItemId, }: {
+    initItem: ({ itemElement, itemId, accordionId, }: {
         itemElement: AccordionElement;
         itemId: string;
         accordionId: number;
