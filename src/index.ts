@@ -1,4 +1,5 @@
 import { getRandomId } from './utils';
+import { KEYS } from './constants';
 
 import {
 	PARAMS_KEY,
@@ -29,6 +30,7 @@ const DEFAULTS = {
 	breakpoint: window.matchMedia('screen'),
 	isSingle: false,
 	devMode: false,
+	isKeyboardTriggerAllowed: false,
 	on: {},
 };
 
@@ -40,6 +42,7 @@ export class Accordions {
 	summarySelector: string;
 	detailsSelector: string;
 	isSingle: boolean;
+	isKeyboardTriggerAllowed: boolean;
 	breakpoint: MediaQueryList;
 	parentElement: HTMLElement | Document;
 	elements: AccordionElement[];
@@ -64,6 +67,7 @@ export class Accordions {
 		this.detailsSelector = parameters.detailsSelector;
 
 		this.isSingle = parameters.isSingle;
+		this.isKeyboardTriggerAllowed = parameters.isKeyboardTriggerAllowed;
 		this.breakpoint = parameters.breakpoint;
 
 		this.parentElement = parameters.parentElement;
@@ -235,6 +239,15 @@ export class Accordions {
 		detailsElement[PARAMS_KEY][PARAMS.ITEM_ID] = itemId;
 
 		summaryElement.addEventListener('click', this.onSummaryClick);
+		if (this.isKeyboardTriggerAllowed) {
+			const allowedKeys = new Set([KEYS.ENTER, KEYS.SPACE]);
+			summaryElement.addEventListener('keydown', (event: KeyboardEvent) => {
+				if (!allowedKeys.has(event.key)) return;
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				this.onSummaryClick(event);
+			});
+		}
 	};
 
 	// Destroying
@@ -303,7 +316,7 @@ export class Accordions {
 	};
 
 	// Event handlers
-	onSummaryClick = (event: MouseEvent) => {
+	onSummaryClick = (event: MouseEvent | KeyboardEvent) => {
 		if (!this.breakpoint.matches) {
 			return;
 		}
