@@ -8,6 +8,7 @@ export declare class Accordions {
     summarySelector: string;
     detailsSelector: string;
     isSingle: boolean;
+    isKeyboardTriggerAllowed: boolean;
     breakpoint: MediaQueryList;
     parentElement: HTMLElement | Document;
     elements: AccordionElement[];
@@ -36,7 +37,7 @@ export declare class Accordions {
     }) => void;
     destroyAccordion: (accordion: AccordionElement | string) => void;
     destroyItem: (item: AccordionElement | string) => void;
-    onSummaryClick: (event: MouseEvent) => void;
+    onSummaryClick: (event: MouseEvent | KeyboardEvent) => void;
     onBreakpointChange: () => void;
     init: () => void;
     destroy: (destroyedBy?: string) => void;
