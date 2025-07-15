@@ -1,6 +1,6 @@
-var g = Object.defineProperty;
-var y = (d, e, t) => e in d ? g(d, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : d[e] = t;
-var i = (d, e, t) => (y(d, typeof e != "symbol" ? e + "" : e, t), t);
+var y = Object.defineProperty;
+var g = (d, e, t) => e in d ? y(d, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : d[e] = t;
+var i = (d, e, t) => (g(d, typeof e != "symbol" ? e + "" : e, t), t);
 const p = (d = 5) => {
   let e = "";
   const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", n = t.length;
@@ -8,7 +8,7 @@ const p = (d = 5) => {
   for (; o < d; )
     e += t.charAt(Math.floor(Math.random() * n)), o += 1;
   return e;
-}, f = {
+}, A = {
   END: "End",
   HOME: "Home",
   LEFT: "ArrowLeft",
@@ -23,7 +23,7 @@ var r;
 (function(d) {
   d.IS_SINGLE = "isSingle", d.IS_OPEN = "isOpen", d.ACCORDION_ID = "accordionId", d.ITEM_ID = "itemId", d.ITEMS_IDS = "itemsIds", d.SUMMARY_ELEMENT = "summaryElement", d.DETAILS_ELEMENT = "detailsElement";
 })(r || (r = {}));
-const S = {
+const m = {
   MANUAL: "manual",
   BREAKPOINT: "breakpoint"
 }, T = "data-accordion-", D = {
@@ -89,12 +89,12 @@ const S = {
       const n = (h = e.closest(this.itemSelector)) != null ? h : void 0;
       n && !n[s] && (n[s] = {});
       const o = n && n[s][r.ITEM_ID], u = e.hasAttribute(D.IS_SINGLE) ? e.getAttribute(D.IS_SINGLE) === "true" : this.isSingle;
-      e[s] = {}, e[s][r.ACCORDION_ID] = String(t), e[s][r.ITEMS_IDS] = [], e[s][r.IS_SINGLE] = u, e.id = this.generateAccordionId(t), e.dataset.accordionRole = "parent";
+      e[s] = {}, e[s][r.ACCORDION_ID] = String(t), e[s][r.ITEMS_IDS] = [], e[s][r.IS_SINGLE] = u, e.id = this.generateAccordionId(t), e.dataset.accordionState = "initialized", e.dataset.accordionRole = "parent";
       const a = Array.from(e.children).filter((l) => l.matches(this.itemSelector));
       if (a.length === 0 && this.devMode)
         throw new Error(`Accordion items not found. Check the selector ${this.itemSelector} | \u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0430\u043A\u043A\u043E\u0440\u0434\u0438\u043E\u043D\u0430 \u043D\u0435 \u043D\u0430\u0438\u0306\u0434\u0435\u043D\u044B. \u041F\u0440\u043E\u0432\u0435\u0440\u044C\u0442\u0435 \u0441\u0435\u043B\u0435\u043A\u0442\u043E\u0440 ${this.itemSelector}`);
-      a.forEach((l, A) => {
-        const I = `${t}-${A}`;
+      a.forEach((l, S) => {
+        const I = `${t}-${S}`;
         this.on.detailsTransitionEnd && l.addEventListener("transitionend", () => {
           this.on.detailsTransitionEnd(this);
         }), this.initItem({
@@ -121,9 +121,9 @@ const S = {
         throw new Error(`Accordion details not found. Check the selector ${this.detailsSelector} | \u041A\u043E\u043D\u0442\u0435\u043D\u0442 \u0430\u043A\u043A\u043E\u0440\u0434\u0438\u043E\u043D\u0430 \u043D\u0435 \u043D\u0430\u0438\u0306\u0434\u0435\u043D. \u041F\u0440\u043E\u0432\u0435\u0440\u044C\u0442\u0435 \u0441\u0435\u043B\u0435\u043A\u0442\u043E\u0440 ${this.detailsSelector}`);
       const c = this.generateSummaryId(t), a = this.generateDetailsId(t);
       if (e.id = this.generateItemId(t), e[s] = {}, e[s][r.ITEM_ID] = t, e[s][r.ACCORDION_ID] = String(n), e[s][r.SUMMARY_ELEMENT] = o, e[s][r.DETAILS_ELEMENT] = u, e.dataset.accordionRole = "item", this.itemElements.push(e), o.dataset.accordionRole = "summary", o.dataset.test = "summary", o.setAttribute("tabindex", "0"), o.setAttribute("id", c), o.setAttribute("aria-controls", a), o[s] = {}, o[s][r.ITEM_ID] = t, u.dataset.accordionRole = "details", u.setAttribute("inert", ""), u.setAttribute("id", a), u.setAttribute("aria-labelledby", c), u[s] = {}, u[s][r.ITEM_ID] = t, o.addEventListener("click", this.onSummaryClick), this.isKeyboardTriggerAllowed) {
-        const A = /* @__PURE__ */ new Set([f.ENTER, f.SPACE]);
+        const S = /* @__PURE__ */ new Set([A.ENTER, A.SPACE]);
         o.addEventListener("keydown", (I) => {
-          !A.has(I.key) || (I.preventDefault(), I.stopImmediatePropagation(), this.onSummaryClick(I));
+          !S.has(I.key) || (I.preventDefault(), I.stopImmediatePropagation(), this.onSummaryClick(I));
         });
       }
     });
@@ -133,7 +133,7 @@ const S = {
         return;
       this.itemElements.filter((o) => !o[s] || !t[s] ? !1 : o[s][r.ACCORDION_ID] === t[s][r.ACCORDION_ID]).forEach((o) => {
         this.destroyItem(o);
-      }), this.elements = this.elements.filter((o) => !o[s] || !t[s] ? !1 : o[s][r.ACCORDION_ID] !== t[s][r.ACCORDION_ID]), delete t[s], t.removeAttribute("id");
+      }), this.elements = this.elements.filter((o) => !o[s] || !t[s] ? !1 : o[s][r.ACCORDION_ID] !== t[s][r.ACCORDION_ID]), delete t[s], t.removeAttribute("id"), t.dataset.accordionState = "destroyed";
     });
     i(this, "destroyItem", (e) => {
       var u, c;
@@ -151,15 +151,15 @@ const S = {
       t && this.toggle(t);
     });
     i(this, "onBreakpointChange", () => {
-      this.breakpoint.matches ? this.isDestroyed && this.destroyedBy === S.BREAKPOINT && this.init() : this.isDestroyed || this.destroy(S.BREAKPOINT);
+      this.breakpoint.matches ? this.isDestroyed && this.destroyedBy === m.BREAKPOINT && this.init() : this.isDestroyed || this.destroy(m.BREAKPOINT);
     });
     i(this, "init", () => {
       this.on.beforeInit && this.on.beforeInit(this), this.devMode && console.log("Accordions mode is enabled. Read the Docs https://www.npmjs.com/package/@digital-butlers/accordions"), this.updateInstanceId(), this.initAccordions(), this.isDestroyed = !1, this.destroyedBy = void 0, this.breakpoint.addEventListener("change", this.onBreakpointChange), this.onBreakpointChange(), this.closeAll(), this.on.afterInit && this.on.afterInit(this);
     });
-    i(this, "destroy", (e = S.MANUAL) => {
-      this.elements.forEach((t) => {
+    i(this, "destroy", (e = m.MANUAL) => {
+      this.on.beforeDestroy && this.on.beforeDestroy(this), this.elements.forEach((t) => {
         this.destroyAccordion(t);
-      }), this.isDestroyed = !0, this.destroyedBy = e;
+      }), this.isDestroyed = !0, this.destroyedBy = e, this.on.afterDestroy && this.on.afterDestroy(this);
     });
     i(this, "open", (e) => {
       var o, u, c;
@@ -206,11 +206,11 @@ const S = {
     this.instanceId = void 0, this.openClass = t.openClass, this.accordionSelector = t.accordionSelector, this.itemSelector = t.itemSelector, this.summarySelector = t.summarySelector, this.detailsSelector = t.detailsSelector, this.isSingle = t.isSingle, this.isKeyboardTriggerAllowed = t.isKeyboardTriggerAllowed, this.breakpoint = t.breakpoint, this.parentElement = t.parentElement, this.elements = [], this.itemElements = [], this.isDestroyed = !0, this.destroyedBy = void 0, this.devMode = t.devMode, this.on = t.on, this.init();
   }
 };
-let m = E;
-i(m, "generateInstanceId", () => {
+let f = E;
+i(f, "generateInstanceId", () => {
   const e = p();
   return E.isInstanceIdUnique(e) ? e : E.generateInstanceId();
-}), i(m, "isInstanceIdUnique", (e) => !document.querySelector(`[id^="accordion-${e}]"`));
+}), i(f, "isInstanceIdUnique", (e) => !document.querySelector(`[id^="accordion-${e}]"`));
 export {
-  m as Accordions
+  f as Accordions
 };

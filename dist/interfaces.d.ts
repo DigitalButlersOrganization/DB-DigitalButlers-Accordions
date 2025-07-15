@@ -23,8 +23,10 @@ export interface AccordionElement extends HTMLElement {
 }
 export type AccordionCallback = (self: Accordions) => void;
 export interface AccordionCallbacks {
-    afterInit?: AccordionCallback;
     beforeInit?: AccordionCallback;
+    afterInit?: AccordionCallback;
+    beforeDestroy?: AccordionCallback;
+    afterDestroy?: AccordionCallback;
     toggle?: AccordionCallback;
     open?: AccordionCallback;
     close?: AccordionCallback;
