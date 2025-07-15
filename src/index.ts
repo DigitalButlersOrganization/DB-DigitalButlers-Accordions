@@ -150,6 +150,7 @@ export class Accordions {
 		accordionElement[PARAMS_KEY][PARAMS.IS_SINGLE] = isSingle;
 
 		accordionElement.id = this.generateAccordionId(accordionId);
+		accordionElement.dataset.accordionState = 'initialized';
 		accordionElement.dataset.accordionRole = 'parent';
 
 		const accordionChildren = Array.from(accordionElement.children) as AccordionElement[];
@@ -277,6 +278,7 @@ export class Accordions {
 		});
 		delete accordionElement[PARAMS_KEY];
 		accordionElement.removeAttribute('id');
+		accordionElement.dataset.accordionState = 'destroyed';
 	};
 
 	destroyItem = (item: AccordionElement | string) => {
@@ -365,12 +367,20 @@ export class Accordions {
 	};
 
 	destroy = (destroyedBy = DESTROYED_TYPES.MANUAL) => {
+		if (this.on.beforeDestroy) {
+			this.on.beforeDestroy(this);
+		}
+
 		this.elements.forEach((accordionElement) => {
 			this.destroyAccordion(accordionElement);
 		});
 
 		this.isDestroyed = true;
 		this.destroyedBy = destroyedBy;
+
+		if (this.on.afterDestroy) {
+			this.on.afterDestroy(this);
+		}
 	};
 
 	open = (item: AccordionElement | string) => {
