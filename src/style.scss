@@ -1,22 +1,23 @@
-/* stylelint-disable CssSyntaxError */
-/* stylelint-disable */
+[data-accordion-role="parent"] {
+	&[data-accordion-state="initialized"] {
+		[data-accordion-role="item"] {
+			display: grid;
+			grid-template-rows: max-content 0fr;
+			transition:
+				grid 0.5s ease,
+				opacity 0.5s ease;
 
-[data-accordion-role='item'] {
-  display: grid;
-  grid-template-rows: max-content 0fr;
-  transition:
-    grid 0.5s ease,
-    opacity 0.5s ease;
+			[data-accordion-role="summary"] {
+				cursor: pointer;
+			}
 
-  [data-accordion-role='summary'] {
-    cursor: pointer;
-  }
+			&.js--open {
+				grid-template-rows: max-content 1fr;
+			}
 
-  &.js--open {
-    grid-template-rows: max-content 1fr;
-  }
-
-  [data-accordion-role='details'] {
-    overflow: hidden;
-  }
+			[data-accordion-role="details"] {
+				overflow: hidden;
+			}
+		}
+	}
 }
