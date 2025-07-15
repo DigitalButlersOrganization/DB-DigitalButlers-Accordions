@@ -1,10 +1,14 @@
 {
 	"name": "@digital-butlers/accordions",
-	"version": "0.0.5",
+	"version": "1.0.0",
 	"type": "module",
 	"description": "A convenient library with accordions for everyday tasks",
 	"keywords": [
-		"tabs"
+		"accordions",
+		"a11y",
+		"accessibility",
+		"nested accordions",
+		"digital butlers"
 	],
 	"homepage": "https://github.com/DigitalButlersOrganization/DB-DigitalButlers-Accordions#readme",
 	"website": "https://www.digitalbutlers.team/",
