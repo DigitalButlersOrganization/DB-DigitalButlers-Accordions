@@ -1,7 +1,8 @@
-[![Digital Butlers](public/logo-200.svg)](https://www.digitalbutlers.team/)
-**Feel the power of Digital Butlers.**
+## Feel the power of [Digital Butlers](https://www.digitalbutlers.team/)
+<br/>
 
 # Accordions
+<br/>
 
 ## Usage
 
