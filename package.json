@@ -64,13 +64,11 @@
 		"stylelint-config-recommended": "^7.0.0",
 		"stylelint-scss": "^4.3.0",
 		"stylelint-use-logical-spec": "^4.1.0",
-		"vite-plugin-eslint": "^1.8.1"
-	},
-	"dependencies": {
-		"@mantine/core": "^7.12.2",
+		"vite-plugin-eslint": "^1.8.1",
 		"@rollup/plugin-typescript": "^11.1.6",
 		"postcss-preset-env": "^10.0.0",
 		"typescript": "^4.9.4",
 		"vite": "^3.2.10"
-	}
+	},
+	"dependencies": {}
 }
