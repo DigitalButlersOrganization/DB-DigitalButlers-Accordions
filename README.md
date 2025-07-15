@@ -139,3 +139,15 @@ _Description:_ Callback will be started before accordion initialization
 _Type:_ `function`
 _Default:_ `undefined`
 _Description:_ Callback will be started after accordion initialization
+
+### `beforeDestroy`
+
+_Type:_ `function`
+_Default:_ `undefined`
+_Description:_ Callback will be started before accordion destroying
+
+### `afterDestroy`
+
+_Type:_ `function`
+_Default:_ `undefined`
+_Description:_ Callback will be started after accordion destroying
