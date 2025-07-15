@@ -1,18 +1,17 @@
-@import '../style.scss';
+@import "../style.scss";
 
 body {
-  display: flex;
-  flex-flow: column;
-  min-height: 200vh;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .dynamic-element {
-  transition: all 0.3s ease;
-  opacity: 1;
+	opacity: 1;
+	transition: all 0.3s ease;
 }
 
 .dynamic-element.js--unactive {
-  opacity: 0;
+	opacity: 0;
 }

@@ -7,9 +7,13 @@ const accordions = new Accordions({
 	isSingle: true,
 	devMode: true,
 	isKeyboardTriggerAllowed: true,
+	breakpoint: window.matchMedia('(max-width: 991px)'),
 	on: {
 		detailsTransitionEnd: () => {
 			console.log('transitionend');
+		},
+		afterDestroy: () => {
+			console.log('afterDestroy');
 		},
 	},
 });
